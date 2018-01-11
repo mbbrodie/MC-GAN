@@ -2,6 +2,6 @@ https://arxiv.org/pdf/1711.09846.pdf : Population Based Training of Neural Netwo
 - Deepmind paper
 - mentions sequential and parallel training, random and grid search.
     - sequential usually gets best results, but consumes the most time
-- COMPARE their results to yours.
+- COMPARE their results to yours. (PBT -> consider doing PBT-MC-GAN)
 
 
