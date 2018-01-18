@@ -2,6 +2,14 @@ https://arxiv.org/pdf/1711.09846.pdf : Population Based Training of Neural Netwo
 - Deepmind paper
 - mentions sequential and parallel training, random and grid search.
     - sequential usually gets best results, but consumes the most time
+- contributions: '(a) automatic selection of hyperparameters during
+training, (b) online model selection to maximise the use of computation spent on promising models, and
+(c) the ability for online adaptation of hyperparameters to enable non-stationary training regimes and the
+discovery of complex hyperparameter schedules'
+- similar to genetic algorithms
+- optimize params and hyperparams simultaneously
+- exploit and explore, can use non-differentiable objective functions
 - COMPARE their results to yours. (PBT -> consider doing PBT-MC-GAN)
+- greedy algorithm, need lots of models (20-40 for CIFAR)
 
 
