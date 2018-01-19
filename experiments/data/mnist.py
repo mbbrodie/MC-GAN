@@ -5,10 +5,11 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
 
-kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
+use_cuda = False
+kwargs = {'num_workers': 1, 'pin_memory': True} if use_cuda else {}
 
 def get_mnist_train_loader(batch_size=64):
-    return = torch.utils.data.DataLoader(
+    return torch.utils.data.DataLoader(
         datasets.MNIST('../data', train=True, download=True,
                        transform=transforms.Compose([
                            transforms.ToTensor(),
@@ -16,10 +17,10 @@ def get_mnist_train_loader(batch_size=64):
                        ])),
         batch_size=batch_size, shuffle=True, **kwargs)
 
-def get_mnist_train_loader(batch_size=64):
+def get_mnist_test_loader(batch_size=64):
     return torch.utils.data.DataLoader(
         datasets.MNIST('../data', train=False, transform=transforms.Compose([
                            transforms.ToTensor(),
                            transforms.Normalize((0.1307,), (0.3081,))
                        ])),
-        batch_size=args.test_batch_size, shuffle=True, **kwargs)
+        batch_size=batch_size, shuffle=True, **kwargs)
