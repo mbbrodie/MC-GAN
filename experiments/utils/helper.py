@@ -1,5 +1,4 @@
 from __future__ import print_function
-import argparse
 import torch
 from torch.autograd import Variable
 import torch.autograd as autograd
@@ -21,7 +20,7 @@ def calc_gradient_penalty(C, x, gen, eps, LAMBDA):
     gradient_penalty = ((gradients.norm(2, dim=1) - 1) ** 2).mean() * LAMBDA
     return gradient_penalty
 
-def show_result(num_epoch, images, path = 'result.png'):
+def save_result(images, path = 'result.png'):
     size_figure_grid = 10
     fig, ax = plt.subplots(size_figure_grid, size_figure_grid, figsize=(5, 5))
     for i, j in itertools.product(range(size_figure_grid), range(size_figure_grid)):
