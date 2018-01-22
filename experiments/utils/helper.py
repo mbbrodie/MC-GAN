@@ -33,6 +33,5 @@ def save_result(images, path = 'result.png'):
         ax[i, j].cla()
         ax[i, j].imshow(images[k].cpu().data.view(28, 28).numpy(), cmap='gray')
 
-    label = 'Epoch {0}'.format(num_epoch)
-    fig.text(0.5, 0.04, label, ha='center')
+    #fig.text(0.5, 0.04, ha='center')
     plt.savefig(path)

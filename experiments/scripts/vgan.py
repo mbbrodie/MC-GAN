@@ -1,9 +1,17 @@
 from __future__ import print_function
+import os
+import sys
+print(sys.argv[0])
+sys.path.append(os.path.dirname(sys.argv[0]))
+sys.path.append('..')
+sys.path.append(os.path.abspath(os.curdir))
+print(sys.path)
+#print (os.path.dirname(sys.argv[0]))
 import torch
 import data.mnist as mnist
 from utils.helper import *
+from models.EnsGAN import *
 import numpy as np
-import os
 
 #see https://raw.githubusercontent.com/caogang/wgan-gp/master/gan_mnist.py
 use_cuda = False
@@ -31,14 +39,14 @@ for i in xrange(n_epochs):
             e.c.zero_grad()
             g.zero_grad()
             gen = Variable(g(zv).data)
-            loss = e.c(gen).mean() - e.c(xv).mean() + calc_gradient_penalty(e.c, xv.data, gen.data, eps)
+            loss = e.c(gen).mean() - e.c(xv).mean() + calc_gradient_penalty(e.c, xv.data, gen.data, eps, LAMBDA)
             loss.backward()
             e.copt.step()
             ls.append(loss.data.numpy()) 
         best_idx = np.argmin(ls) 
         e.c.zero_grad()
         e.gs[best_idx].zero_grad()
-        save_result(e.gs[best_idx](zv), result_path+'iter_'+str(i)+'g_'+str(best_idx))
+        save_result(e.gs[best_idx](zv), result_path+'iter_'+str(i)+'batch_'+str(batch_idx)+'g_'+str(best_idx))
         loss = -e.c(e.gs[best_idx](zv)).mean()
         loss.backward()
         e.gopts[best_idx].step()
