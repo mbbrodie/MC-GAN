@@ -31,7 +31,7 @@ def save_result(images, path = 'result.png'):
         i = k // 8
         j = k % 8
         ax[i, j].cla()
-        ax[i, j].imshow(images[k].cpu().data.view(28, 28).numpy(), cmap='gray')
+        ax[i, j].imshow(images[k].cpu().data.view(64, 64).numpy(), cmap='gray')
 
     #fig.text(0.5, 0.04, ha='center')
     plt.savefig(path)

@@ -1,12 +1,7 @@
 from __future__ import print_function
 import os
 import sys
-print(sys.argv[0])
-sys.path.append(os.path.dirname(sys.argv[0]))
-sys.path.append('..')
 sys.path.append(os.path.abspath(os.curdir))
-print(sys.path)
-#print (os.path.dirname(sys.argv[0]))
 import torch
 import data.mnist as mnist
 from utils.helper import *
@@ -31,7 +26,7 @@ if not os.path.exists(result_path):
 for i in xrange(n_epochs):
     for batch_idx, (x, y) in enumerate(train_loader):
         xv = Variable(x)
-        z = torch.FloatTensor(bs, zdim).normal_(0,1)
+        z = torch.FloatTensor(bs, zdim, 1, 1).normal_(0,1)
         zv = Variable(z)
         eps = torch.FloatTensor(bs, 1,1,1).uniform_()
         ls = []

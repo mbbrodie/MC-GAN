@@ -12,8 +12,10 @@ def get_mnist_train_loader(batch_size=64):
     return torch.utils.data.DataLoader(
         datasets.MNIST('../data', train=True, download=True,
                        transform=transforms.Compose([
+                           transforms.Scale(64),
                            transforms.ToTensor(),
-                           transforms.Normalize((0.1307,), (0.3081,))
+                           transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))
+                           #transforms.Normalize((0.1307,), (0.3081,))
                        ])),
         batch_size=batch_size, shuffle=True, **kwargs)
 
